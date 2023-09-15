@@ -31,7 +31,8 @@ int main(int argc, char **argv)
 	while (getline(&input_line, &bufsize, fp) != -1)
 	{
 		opcode = strtok(input_line, TOKDELIM);
-		arg = strtok(NULL, TOKDELIM);
+		if (!strcmp(opcode, "push"))
+			arg = strtok(NULL, TOKDELIM);
 		execute(opcode, line_number, &stack);
 		line_number++;
 	}
