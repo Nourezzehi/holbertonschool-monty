@@ -6,14 +6,13 @@
  * @argv: vector of arguments
  * Return: 0
 */
-
 char *arg;
 
 int main(int argc, char **argv)
 {
 	stack_t *stack = NULL;
 	size_t bufsize = 0;
-	char *file = *(argv + 1), *input_line = NULL, *opcode = NULL;
+	char *file = *(argv + 1), *input_line = NULL;
 	FILE *fp;
 	unsigned int line_number = 1;
 
@@ -30,10 +29,7 @@ int main(int argc, char **argv)
 	}
 	while (getline(&input_line, &bufsize, fp) != -1)
 	{
-		opcode = strtok(input_line, TOKDELIM);
-		if (!strcmp(opcode, "push"))
-			arg = strtok(NULL, TOKDELIM);
-		execute(opcode, line_number, &stack);
+		read_line(input_line, line_number, &stack);
 		line_number++;
 	}
 	free(input_line);

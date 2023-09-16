@@ -37,14 +37,16 @@ void push(stack_t **stack, unsigned int line_num)
 
 void pall(stack_t **stack, unsigned int line_num)
 {
-	stack_t *move = *stack;
+	stack_t *ptr = *stack;
 
-	while (move)
-	{
-		printf("%d\n", move->n);
-		move = move->next;
-	}
 	(void) line_num;
+	if (*stack == NULL)
+		return;
+	while (ptr)
+	{
+		printf("%d\n", ptr->n);
+		ptr = ptr->next;
+	}
 }
 /**
  * pint - print the top of a stack
